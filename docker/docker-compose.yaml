@@ -20,3 +20,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - $PWD/jenkins/vampi-analyzer.jenkinsfile:/var/jenkins_home/vampi-analyzer.jenkinsfile
+      - $PWD/defectdojo-shells:/defectdojo-shells
