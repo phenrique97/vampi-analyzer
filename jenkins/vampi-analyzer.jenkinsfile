@@ -1,14 +1,62 @@
 pipeline{
     agent any
     stages{
-        stage('Clone'){
+        stage('Clone Projet'){
             steps{
+                cleanWs()
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/erev0s/VAmPI.git']]])
             }
         }
-        stage('SAST'){
+        stage('SAST - Bandit'){
             steps{
-                sh 'docker run --rm --name bandit_container ghcr.io/pycqa/bandit/bandit -r $WORKSPACE -f json -o $WORKSPACE/bandit.json'
+                sh 'docker run --rm --name bandit_container -v docker_jenkins_volume:/var/jenkins_home ghcr.io/pycqa/bandit/bandit -q -r $WORKSPACE/ -f json -o $WORKSPACE/bandit.json --exit-zero'
+            }
+        }
+        stage('SCA - Trivy'){
+            steps{
+                sh 'docker run --rm --name trivy_container -v docker_jenkins_volume:/var/jenkins_home aquasec/trivy fs $WORKSPACE/ -q -f json -o $WORKSPACE/trivy.json'
+            }
+        }
+        stage('Search Secrets - GitLeaks'){
+            steps{
+                sh 'docker run --rm --name gitleaks_container -v docker_jenkins_volume:/var/jenkins_home zricethezav/gitleaks dir $WORKSPACE/ -f json -r $WORKSPACE/gitleaks.json --exit-code 0'
+            }
+        }
+        stage('Create Product - DefectDojo'){
+            steps{
+                sh ''''
+                    curl -X 'POST' \
+                    'http://172.16.21.211:8080/api/v2/products/' \
+                    -H 'accept: application/json' \
+                    -H 'Content-Type: application/json' \
+                    -H 'Authorization: Token 761520661b3942ce8fee63ea0542d676acb3143e' \
+                    -d '{
+                    "name": "vampi-analyzer",
+                    "description": "VAmPI Scanners",
+                    "prod_numeric_grade": null,
+                    "business_criticality": null,
+                    "platform": null,
+                    "lifecycle": null,
+                    "origin": null,
+                    "user_records": null,
+                    "revenue": null,
+                    "external_audience": false,
+                    "internet_accessible": false,
+                    "enable_product_tag_inheritance": false,
+                    "enable_simple_risk_acceptance": false,
+                    "enable_full_risk_acceptance": true,
+                    "disable_sla_breach_notifications": false,
+                    "product_manager": null,
+                    "technical_contact": null,
+                    "team_manager": null,
+                    "prod_type": 1,
+                    "sla_configuration": 1,
+                    "members": [],
+                    "authorization_groups": [],
+                    "regulations": [],
+                    "prefetch": {}
+                    }'
+                '''
             }
         }
     }
