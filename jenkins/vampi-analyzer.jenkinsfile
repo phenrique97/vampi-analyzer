@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    stages{
+        stage('Clone'){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/erev0s/VAmPI.git']]])
+            }
+        }
+        stage('SAST'){
+            steps{
+                sh 'docker run --rm --name bandit_container ghcr.io/pycqa/bandit/bandit -r $WORKSPACE -f json -o $WORKSPACE/bandit.json'
+            }
+        }
+    }
+}

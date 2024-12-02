@@ -1,0 +1,20 @@
+networks:
+  rede-local:
+
+services:
+  jenkins:
+    image: jenkins/jenkins:latest-jdk17
+    user: root
+    privileged: true
+    networks:
+      - rede-local
+    ports:
+      - 8081:8080
+      - 50000:50000
+    container_name: jenkins_container
+    volumes:
+      - ../jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      # - ../jenkins/create-job.groovy:/var/jenkins_home/init.groovy.d/create-job.groovy
+      - ../jenkins/vampi-analyzer.jenkinsfile:/var/jenkins_home/vampi-analyzer.jenkinsfile
