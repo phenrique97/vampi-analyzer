@@ -35,7 +35,7 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
     bash defectdojo-shells/3-create-sca-engagement.sh && \
     bash defectdojo-shells/4-create-secrets-engagement.sh
     ```
-6. Verificar se os 3 engagements foram criados.
+6. Verifique se os 3 engagements foram criados.
 ![DefectDojo Engagements](assets/defectdojo-engagements.png)
 
 ### Preparando o Jenkins
@@ -52,7 +52,7 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
 ![Config Jenkins Admin](/assets/jenkins-pwd-admin.png)
 3.2. Instalar extensões sugeridas.
 ![Jenkins Extensions](/assets/jenkins-extensions.png)
-3.3. Ignorar criação do usuário. Após essa tela só basta avançar as outras duas seguintes.
+3.3. Ignorar criação do usuário. Após essa tela, basta avançar as outras duas seguintes.
 ![Skip Admin](/assets/jenkins-skip-admin.png)
 
 4. A partir da tela inicial do Jenkins, acesse ***Gerenciar Jenkins > Console de script***. Cole e execute o script abaixo e verifique se na tela inicial do Jenkins se o job **vampi-analyzer** foi criado.
@@ -72,7 +72,7 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
     ```
     ![Jenkins Initial Screen](/assets/jenkins-initial-screen.png)
 
-5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo no script da pipeline. Em seguida, salve e execute. A saida proposta deve ser a seguinte:
+5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo no script da pipeline. Em seguida, salve e execute. O pipeline overview deve ser o seguinte:
 
 
     ![Saida Jenkins](/assets/jenkins-success.png)
@@ -83,7 +83,7 @@ Acessando o produto **vampi-analyzer** é possivel verificar as vulnerabilidade 
 
 ![DefectDojo Vuln](/assets/defectdojo-vuln.png)
 
-Além disso, é possivel classificar e marcar se as vulnerabilidades foram mitigadas ou não. É possivel também ter a visualização das vulnerabilidades catalogadas por engagement.
+Além disso, é possivel ignorar ou nao as vulnerabilidades, encontrar mitigações, etc. É possível também ter a visualização das vulnerabilidades catalogadas por engagement.
 
 ![Defect Dojo Engagemtns Result](/assets/defectdojo-engagements-result.png)
 
