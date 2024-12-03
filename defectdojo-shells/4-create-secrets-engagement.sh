@@ -1,10 +1,11 @@
 #!/bin/bash
 
 curl -X 'POST' \
-  'http://172.16.21.211:8080/api/v2/engagements/' \
+  'http://localhost:8080/api/v2/engagements/' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -H 'Authorization: Token $TOKEN' \
+  -F 'id=3' \
   -F 'name=secrets-gitleaks' \
   -F 'description= Scan Gitleaks' \
   -F 'engagement_type=CI/CD' \
