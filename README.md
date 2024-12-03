@@ -1,10 +1,10 @@
 ## VAmPI Analyzer
 
-#### Objetivo
+### Objetivo
 O projeto tem como objetivo realizar scanners SAST (Static application security testing) utilizando o [Bandit](https://bandit.readthedocs.io/en/latest/), SCA (Software Composition Analysis) com o [Trivy](https://trivy.dev/) e a busca de credênciais vazadas no histórico do git utilizando o [GitLeaks](https://gitleaks.io/). Ao final de cada scanner, os resultados serão enviados para o [DefectDojo](https://docs.defectdojo.com/).
 
 
-#### Preparando o DefectDojo
+### Preparando o DefectDojo
 
  1. Executar os procedimentos para inicializar o DefectDojo.
 
@@ -38,7 +38,7 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
 6. Verificar se os 3 engagements foram criados.
 ![DefectDojo Engagements](assets/defectdojo-engagements.png)
 
-#### Preparando o Jenkins
+### Preparando o Jenkins
 1. Executar o docker compose do Jenkins.
     ```bash
     docker compose -f jenkins/docker-compose.yml up -d
@@ -52,10 +52,10 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
 ![Config Jenkins Admin](/assets/jenkins-pwd-admin.png)
 3.2. Instalar extensões sugeridas.
 ![Jenkins Extensions](/assets/jenkins-extensions.png)
-3.3. Ignorar criação do usuário. Após essa tela só basta avançar.
+3.3. Ignorar criação do usuário. Após essa tela só basta avançar as outras duas seguintes.
 ![Skip Admin](/assets/jenkins-skip-admin.png)
 
-4. Acesse ***Gerenciar Jenkins > Console de script***. Cole e execute o script abaixo e verifique se na tela inicial do Jenkins se o job **vampi-analyzer** foi criado.
+4. A partir da tela inicial do Jenkins, acesse ***Gerenciar Jenkins > Console de script***. Cole e execute o script abaixo e verifique se na tela inicial do Jenkins se o job **vampi-analyzer** foi criado.
     ```groovy
     import jenkins.model.*
     import hudson.model.*
@@ -70,18 +70,28 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
     job.definition = new CpsFlowDefinition(pipelineScript, true)
     job.save()
     ```
-5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo. Em seguida, Salvar e executar o pipeline.
+    ![Jenkins Initial Screen](/assets/jenkins-initial-screen.png)
+
+5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo no script da pipeline. Em seguida, Salvar e executar. A saida proposta deve ser a seguinte:
+
 
     ![Saida Jenkins](/assets/jenkins-success.png)
 
-#### Verificação dos dados enviados no DefectDojo
+### Verificação dos dados enviados para o DefectDojo
 
-Acessando o produto **vampi-analyzer** é possivel verificar os itens encontrados, esses itens sãoo os dados enviados do pipeline executado no Jenkins.
+Acessando o produto **vampi-analyzer** é possivel verificar os itens encontrados, esses itens são os dados enviados do pipeline executado no Jenkins.
 
 ![DefectDojo Vuln](/assets/defectdojo-vuln.png)
 
-Além disso, é possivel classificá-las e marcar se a vulnerabilidade foi mitigada ou não. É possivel também a visualização das vulnerabilidades catalogadas por engagement.
+Além disso, é possivel classificá-las e marcar se as vulnerabilidades foram mitigadas ou não. É possivel também ter a visualização das vulnerabilidades catalogadas por engagement.
 
 ![Defect Dojo Engagemtns Result](/assets/defectdojo-engagements-result.png)
 
 
+### Recursos Adicionais
+
+- [Repositório VAmPI](https://github.com/erev0s/VAmPI.git)
+- [Documentação do Bandit](https://bandit.readthedocs.io/en/latest/)
+- [Documentação Trivy](https://trivy.dev/)
+- [Documentação Gitleaks](https://gitleaks.io/)
+- [Documentação DefectDojo](https://docs.defectdojo.com/)
