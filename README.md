@@ -72,18 +72,18 @@ O projeto tem como objetivo realizar scanners SAST (Static application security 
     ```
     ![Jenkins Initial Screen](/assets/jenkins-initial-screen.png)
 
-5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo no script da pipeline. Em seguida, Salvar e executar. A saida proposta deve ser a seguinte:
+5. Ir nas configurações do job **vampi-analyzer** e adicionar o **IP** e **TOKEN** do DefectDojo no script da pipeline. Em seguida, salve e execute. A saida proposta deve ser a seguinte:
 
 
     ![Saida Jenkins](/assets/jenkins-success.png)
 
 ### Verificação dos dados enviados para o DefectDojo
 
-Acessando o produto **vampi-analyzer** é possivel verificar os itens encontrados, esses itens são os dados enviados do pipeline executado no Jenkins.
+Acessando o produto **vampi-analyzer** é possivel verificar as vulnerabilidade encontrados, essas vulnerabilidades são provenientes do pipeline executado no Jenkins.
 
 ![DefectDojo Vuln](/assets/defectdojo-vuln.png)
 
-Além disso, é possivel classificá-las e marcar se as vulnerabilidades foram mitigadas ou não. É possivel também ter a visualização das vulnerabilidades catalogadas por engagement.
+Além disso, é possivel classificar e marcar se as vulnerabilidades foram mitigadas ou não. É possivel também ter a visualização das vulnerabilidades catalogadas por engagement.
 
 ![Defect Dojo Engagemtns Result](/assets/defectdojo-engagements-result.png)
 
@@ -95,3 +95,6 @@ Além disso, é possivel classificá-las e marcar se as vulnerabilidades foram m
 - [Documentação Trivy](https://trivy.dev/)
 - [Documentação Gitleaks](https://gitleaks.io/)
 - [Documentação DefectDojo](https://docs.defectdojo.com/)
+
+  git config --global user.email "pedrooliveira0997@gmail.com"
+  git config --global user.name "Pedro Henrique"
