@@ -95,6 +95,3 @@ Além disso, é possivel classificar e marcar se as vulnerabilidades foram mitig
 - [Documentação Trivy](https://trivy.dev/)
 - [Documentação Gitleaks](https://gitleaks.io/)
 - [Documentação DefectDojo](https://docs.defectdojo.com/)
-
-  git config --global user.email "pedrooliveira0997@gmail.com"
-  git config --global user.name "Pedro Henrique"
