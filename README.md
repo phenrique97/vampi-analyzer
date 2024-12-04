@@ -1,7 +1,7 @@
 ## VAmPI Analyzer
 
 ### Objetivo
-O projeto tem como objetivo realizar scanners SAST (Static application security testing) utilizando o [Bandit](https://bandit.readthedocs.io/en/latest/), SCA (Software Composition Analysis) com o [Trivy](https://trivy.dev/) e a busca de credênciais vazadas no histórico do git utilizando o [GitLeaks](https://gitleaks.io/). Ao final de cada scanner, os resultados serão enviados para o [DefectDojo](https://docs.defectdojo.com/).
+O projeto tem como objetivo realizar scanners SAST (Static application security testing) utilizando o [Bandit](https://bandit.readthedocs.io/en/latest/), SCA (Software Composition Analysis) com o [Trivy](https://trivy.dev/) e a busca de credenciais vazadas no histórico do git utilizando o [GitLeaks](https://gitleaks.io/). Ao final de cada scanner, os resultados serão enviados para o [DefectDojo](https://docs.defectdojo.com/).
 
 
 ### Preparando o DefectDojo
